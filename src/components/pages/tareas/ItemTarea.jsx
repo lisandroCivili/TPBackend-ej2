@@ -6,13 +6,13 @@ import React from 'react';
 import { borrarTarea, leerTareas } from '../../../helpers/queries';
 
 const ItemTarea = ({ tarea, setTareas }) => {
-  const {fechaHora} = tarea;
+  // const {fechaHora} = tarea;
 
-  const [fecha, hora] = fechaHora.split('T');
-  const [anio, mes, dia] = fecha.split('-');
-  const fechaFormateada = `${dia}/${mes}/${anio}`;
-  const [horaSinSegundos] = hora.split(':');
-  const horaFormateada = `${horaSinSegundos}:${horaSinSegundos}`;
+  // const [fecha, hora] = fechaHora.split('T');
+  // const [anio, mes, dia] = fecha.split('-');
+  // const fechaFormateada = `${dia}/${mes}/${anio}`;
+  // const [horaSinSegundos] = hora.split(':');
+  // const horaFormateada = `${horaSinSegundos}:${horaSinSegundos}`;
 
   const eliminarTarea = ()=>{
     Swal.fire({
@@ -52,8 +52,8 @@ const ItemTarea = ({ tarea, setTareas }) => {
   return (
     <tr>
       <td className="text-center fw-medium fs-5">{tarea.tarea}</td>
-      <td className="text-center fw-medium fs-5">{fechaFormateada}</td>
-      <td className="text-center fw-medium fs-5">{horaFormateada}</td>
+      <td className="text-center fw-medium fs-5">{tarea.fechaHora}</td>
+      <td className="text-center fw-medium fs-5">{tarea.fechaHora}</td>
       <td className="text-center fw-medium fs-5">{tarea.prioridad}</td>
       <td className="text-center">
         <Link className="me-lg-2 btn btn-warning" to={'/editar/'+tarea._id}>
