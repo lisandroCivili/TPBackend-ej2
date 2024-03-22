@@ -1,12 +1,12 @@
 import { Container, Form, Button } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from 'react-router-dom';
-import { crearTarea } from "../../helpers/queries";
+import { useParams, useNavigate } from 'react-router-dom';
+import { crearTarea, obtenerTarea } from "../../helpers/queries";
 import Swal from 'sweetalert2'
 
 
-const Inicio = () => {
+const Inicio = ({titulo, editando}) => {
 
     const {
         register,
@@ -16,6 +16,27 @@ const Inicio = () => {
         setValue
       } = useForm()
 
+
+      const {id} = useParams();
+      const navegacion = useNavigate()
+      useEffect(()=>{
+        if (editando) {
+          cargarDatos()
+        }
+      },[])
+
+      const cargarDatos = async()=>{
+        const respuesta = await obtenerTarea(id)
+        if (respuesta.status === 200) {
+          const datos = await respuesta.json()
+          setValue('tarea', datos.tarea)
+          setValue('prioridad', datos.prioridad)
+          setValue('fechaHora', datos.fechaHora)
+        }else{
+          console.log("No se obtuvieron datos")
+        }
+      }
+
     const datosValidados = async(tarea)=>{
         const respuesta = await crearTarea(tarea)
         if (respuesta.status === 201) {
@@ -24,7 +45,7 @@ const Inicio = () => {
                 text: `Se creo la tarea con éxito`,
                 icon: "success"
               });
-              reset()
+              navegacion('/mistareas')
             }else{
               Swal.fire({
                 title: "Ocurrio un error",
@@ -39,7 +60,7 @@ const Inicio = () => {
       <div className="border border-black d-flex justify-content-center">
         <Form className="d-flex flex-column w-75" onSubmit={handleSubmit(datosValidados)}>
           <Form.Group className="mb-3 w-75" controlId="formBasicEmail">
-            <Form.Label className="fs-3">Agregue una tarea</Form.Label>
+            <Form.Label className="fs-3">{titulo}</Form.Label>
             <Form.Control
               type="text"
               placeholder="Ej: Asistir a reunion de trabajo"
@@ -112,10 +133,6 @@ const Inicio = () => {
           <Button variant="primary" type="submit" className="my-3 w-25">
             Guardar
           </Button>
-          <Button variant="primary" type="submit" className="my-3 w-25">
-            Cancelar
-          </Button>
-
         </div>
         </Form>
       </div>

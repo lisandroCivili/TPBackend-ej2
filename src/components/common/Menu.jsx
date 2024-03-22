@@ -31,7 +31,7 @@ const Menu = ({ usuarioLogeado, setUsuarioLogeado }) => {
             <NavLink end className="nav-link fs-5" to="/">
               Inicio
             </NavLink>
-            <NavLink end className="nav-link fs-5" to="/registro">
+            <NavLink end className="nav-link fs-5" to="/mistareas">
               Mis tareas
             </NavLink>
           </Nav>
