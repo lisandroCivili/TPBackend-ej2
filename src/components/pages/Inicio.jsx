@@ -40,7 +40,7 @@ const Inicio = ({ titulo, editando }) => {
       if (respuesta.status === 200) {
         Swal.fire({
           title: "Edicion confirmada",
-          text: `El tarea ${tarea.nombreTarea} fue editado con exito.`,
+          text: `La tarea fue editada con exito.`,
           icon: "success"
         });
         navegacion('/mistareas')
@@ -57,7 +57,7 @@ const Inicio = ({ titulo, editando }) => {
       if (respuesta.status === 201) {
         Swal.fire({
           title: "Tarea creada",
-          text: `Se creo la receta.`,
+          text: `Se creo la tarea.`,
           icon: "success",
         });
         reset();
@@ -73,7 +73,7 @@ const Inicio = ({ titulo, editando }) => {
         } else {
           Swal.fire({
             title: "Ocurrio un error",
-            text: "No se puedo crear la tarea, intente nuevamente en unos minutos.",
+            text: "No se pudo crear la tarea, intente nuevamente en unos minutos.",
             icon: "error",
           });
         }
