@@ -44,3 +44,18 @@ export const borrarTarea = async(id)=>{
         console.log(error)
     }
 }
+
+export const editarTarea = async(nuevosDatosTarea, id)=>{
+    try {
+        const respuesta = await fetch(APITareas+'/'+id,{
+            method: "PUT",
+            headers: {
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify(nuevosDatosTarea)
+        })
+        return respuesta
+    } catch (error) {
+        console.log(error)
+    }
+}
