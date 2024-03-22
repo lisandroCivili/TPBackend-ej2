@@ -42,7 +42,7 @@ const ListaTareas = () => {
         </thead>
         <tbody>
           {
-            tareas.map((tarea)=><ItemTarea key={tarea.id} tarea={tarea} setTareas={setTareas}/>)
+            tareas.map((tarea)=><ItemTarea key={tarea._id} tarea={tarea} setTareas={setTareas}/>)
           }
         </tbody>
       </Table>

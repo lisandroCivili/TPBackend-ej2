@@ -26,7 +26,7 @@ const ItemTarea = ({ tarea, setTareas }) => {
       cancelButtonText: "Cancelar"
     }).then(async(result) => {
       if (result.isConfirmed) {
-        const respuesta = await borrarTarea(tarea.id)
+        const respuesta = await borrarTarea(tarea._id)
         if (respuesta.status === 200) {
           Swal.fire({
             title: "Tarea eleminada",
@@ -56,7 +56,7 @@ const ItemTarea = ({ tarea, setTareas }) => {
       <td className="text-center fw-medium fs-5">{horaFormateada}</td>
       <td className="text-center fw-medium fs-5">{tarea.prioridad}</td>
       <td className="text-center">
-        <Link className="me-lg-2 btn btn-warning" to={'/editar/'+tarea.id}>
+        <Link className="me-lg-2 btn btn-warning" to={'/editar/'+tarea._id}>
           <i className="bi bi-pencil-square"></i>
         </Link>
         <Button variant="danger" onClick={eliminarTarea}>
