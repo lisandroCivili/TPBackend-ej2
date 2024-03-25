@@ -4,7 +4,7 @@ Frontend del ejercion 1.
 
 ## Link del sitio
 
-[Lista de tareas](https://to-do-rolling.netlify.app/mistareas)
+[Lista de tareas](https://to-do-rolling.netlify.app)
 
 ## Dependencies
 + bootstrap
